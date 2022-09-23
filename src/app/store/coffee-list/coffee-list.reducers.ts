@@ -6,7 +6,7 @@ export const initialState: ReadonlyArray<Coffee> = [];
 
 export const coffeeListReducer = createReducer(
     initialState,
-    on(setCoffeeList, (state, { coffeeList }) => state = coffeeList),
+    on(setCoffeeList, (state, { coffeeList }) => coffeeList),
     on(addCoffee, (state, { coffee }) => {
         if (state.findIndex((item)=> item.id == coffee.id) > -1) return state;
         return [...state, coffee];
