@@ -1,1 +1,1 @@
-DEMO: https://kcsujeet.github.io/
+LIVE DEMO: https://kcsujeet.github.io/coffee-list/
