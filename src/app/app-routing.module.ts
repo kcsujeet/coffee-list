@@ -13,7 +13,7 @@ const routes: Routes = [
     path: 'coffee/:id',
     component: CoffeeDetailComponent
   },
-  {path: '**', component: PageNotFoundComponent}
+  {path: '**', redirectTo: '', component: PageNotFoundComponent}
 
 ];
 
