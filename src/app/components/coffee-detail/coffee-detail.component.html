@@ -1,0 +1,25 @@
+<div class="my-3">
+    <a class="text-decoration-none" routerLink="/"> ← Back</a>
+</div>
+<div class="card hover-shadow shadow-sm" *ngIf="coffee">
+    <div class="card-header">
+        Coffee Details
+    </div>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item d-flex justify-content-between">
+            <strong>Blend Name: </strong> <span>{{coffee.blend_name}}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between">
+            <strong>Origin:</strong> <span>{{coffee.origin}}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between">
+            <strong>Variety:</strong> <span>{{coffee.variety}}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between">
+            <strong>Notes:</strong> <span>{{coffee.notes}}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between">
+            <strong>Intensifier:</strong> <span>{{coffee.intensifier}}</span>
+        </li>
+    </ul>
+</div>

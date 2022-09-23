@@ -1,0 +1,52 @@
+<div class="coffee-list">
+    <div *ngIf="loading">
+        <div class="d-flex flex-column align-items-center">
+            <div class="spinner-border text-primary" role="status"></div>
+            <span>Brewing your favorite coffees ... Please wait!</span>
+        </div>
+    </div>
+    <div *ngIf="!loading">
+        <div class="row mb-1">
+            <div class="col-md-6 col-sm-12">
+                <input [(ngModel)]="searchString" type="text" class="form-control" placeholder="Search Coffee">
+            </div>
+            <div class="col-md-6 col-sm-12 d-flex justify-content-end">
+                <ngb-pagination
+                    [(page)]="page"
+                    [pageSize]="pageSize"
+                    [collectionSize]="filteredCoffeeList.length">
+                </ngb-pagination>
+            </div>
+        </div>
+
+        <ng-template [ngIf]="filteredCoffeeList.length > 0" [ngIfElse]="elseBlock">
+            <div
+                class="coffee-item"
+                *ngFor="let coffee of (filteredCoffeeList | slice: (page-1) * pageSize : page * pageSize)"
+                >
+                <app-coffee [coffee]="coffee"></app-coffee>
+            </div>
+        </ng-template>
+        <ng-template #elseBlock>
+            <p class="hover-shadow">
+                <ngb-alert [dismissible]="false" class="m-0" *ngIf="searchString.length > 0">
+                    <strong> Ooops!!!</strong> We don't have that blend. Try another.
+                </ngb-alert>
+                <ngb-alert [dismissible]="false" class="m-0" *ngIf="searchString.length == 0 && coffeeList.length == 0">
+                    <strong>No coffee found. Looks like we're out of stock.</strong>
+                </ngb-alert>
+            </p>
+        </ng-template>
+
+        <div class="row">
+            <div class="col-md-6 col-sm-12 offset-md-6 d-flex justify-content-end">
+                <ngb-pagination
+                    class="mt-2"
+                    [(page)]="page"
+                    [pageSize]="pageSize"
+                    [collectionSize]="filteredCoffeeList.length">
+                </ngb-pagination>
+            </div>
+        </div>
+    </div>
+</div>
