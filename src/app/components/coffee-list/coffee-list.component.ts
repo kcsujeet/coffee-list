@@ -1,5 +1,5 @@
 import { selectCoffeeList } from '../../store/coffee-list/coffee-list.selectors';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Coffee } from '../coffee/coffee.model';
 import { Store } from '@ngrx/store';
 
@@ -7,6 +7,7 @@ import { Store } from '@ngrx/store';
   selector: 'app-coffee-list',
   templateUrl: './coffee-list.component.html',
   styleUrls: ['./coffee-list.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CoffeeListComponent implements OnInit {
   coffeeList: Array<Coffee> = []
@@ -17,7 +18,8 @@ export class CoffeeListComponent implements OnInit {
   loading: boolean = true
 
   constructor (
-    private store: Store
+    private store: Store,
+    private changeDetector: ChangeDetectorRef,
   ) {}
 
   ngOnInit(): void {
@@ -26,6 +28,7 @@ export class CoffeeListComponent implements OnInit {
       if(items?.length > 0) {
         this.coffeeList = items
         this.loading = false
+        this.changeDetector.detectChanges()
       }
     });
   }
